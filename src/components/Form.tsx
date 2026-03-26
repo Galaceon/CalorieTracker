@@ -1,24 +1,27 @@
 import { useState } from "react"
+import type { Activity } from "../types"
 import { categories } from "../data/categories"
 import type{ ChangeEvent } from "react"
 
 export default function Form() {
 
-  const [activity, setActivity] = useState({
+  const [activity, setActivity] = useState<Activity>({
     category: 1,
     name: '',
     calories: 0
   })
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
-    setActivity({...activity, [e.target.id]: e.target.value})
+    const inNumberField = ['category', 'calories'].includes(e.target.id)
+
+    setActivity({...activity, [e.target.id]: inNumberField ? +e.target.value : e.target.value})
   }
 
   return (
     <form className="space-y-5 bg-white shadow p-10 rounded-lg">
       <div className="grid grid-cols-1 gap-3">
         <label htmlFor="category" className="font-bold">Categoría:</label>
-        <select value={activity.category} onChange={handleChange} className="border border-slate-300 p-2 rounded-lg w-full bg-white" id="category">
+        <select id="category" value={activity.category} onChange={handleChange} className="border border-slate-300 p-2 rounded-lg w-full bg-white">
           {categories.map(category => (
             <option key={category.id} value={category.id}>
               {category.name}
