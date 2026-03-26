@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { categories } from "../data/categories"
+import type{ ChangeEvent } from "react"
 
 export default function Form() {
 
@@ -9,19 +10,17 @@ export default function Form() {
     calories: 0
   })
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
     setActivity({...activity, [e.target.id]: e.target.value})
-    console.log({[e.target.id]: e.target.value})
   }
 
   return (
     <form className="space-y-5 bg-white shadow p-10 rounded-lg">
-      {activity.name}
       <div className="grid grid-cols-1 gap-3">
         <label htmlFor="category" className="font-bold">Categoría:</label>
         <select value={activity.category} onChange={handleChange} className="border border-slate-300 p-2 rounded-lg w-full bg-white" id="category">
           {categories.map(category => (
-            <option key={category.id} value={category.name}>
+            <option key={category.id} value={category.id}>
               {category.name}
             </option>
           ))}
