@@ -1,7 +1,7 @@
 import { useState } from "react"
 import type { Activity } from "../types"
 import { categories } from "../data/categories"
-import type{ ChangeEvent } from "react"
+import type{ ChangeEvent, SubmitEvent } from "react"
 
 export default function Form() {
 
@@ -22,8 +22,14 @@ export default function Form() {
     return name.trim() !== '' && calories > 0
   }
 
+  const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    console.log('haciendo y tak')
+  }
+
   return (
-    <form className="space-y-5 bg-white shadow p-10 rounded-lg">
+    <form className="space-y-5 bg-white shadow p-10 rounded-lg" onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 gap-3">
         <label htmlFor="category" className="font-bold">Categoría:</label>
         <select id="category" value={activity.category} onChange={handleChange} className="border border-slate-300 p-2 rounded-lg w-full bg-white">
