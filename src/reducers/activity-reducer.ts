@@ -7,7 +7,7 @@ export type ActivityActions =
 
 
 // Type para initialState
-type ActivityState = { 
+export type ActivityState = { 
     activities : Activity[],
     activeId: Activity['id']
 }
