@@ -7,6 +7,7 @@ function App() {
 
     const [state, dispatch] = useReducer(activityReducer, initialState)
 
+
     return (
         <>
             <header className="bg-lime-600 py-3">
@@ -26,6 +27,7 @@ function App() {
             <section className="p-10 mx-auto max-w-4xl">
                 <ActivityList 
                     activities={state.activities}
+                    dispatch={dispatch}
                 />
             </section>
         </>
