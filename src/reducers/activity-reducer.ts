@@ -13,9 +13,14 @@ export type ActivityState = {
     activeId: Activity['id']
 }
 
+const localStorageActivities = () : Activity[] => {
+    const activities = localStorage.getItem('activities')
+    return activities ? JSON.parse(activities) : []
+}
+
 // State tipo objeto
 export const initialState : ActivityState = { 
-    activities: [],
+    activities: localStorageActivities(),
     activeId: ''
 }
 
