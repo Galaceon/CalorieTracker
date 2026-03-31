@@ -49,6 +49,8 @@ export default function Form({dispatch, state} : FormProps) {
         setActivity({
             ...initialState, id: uuidv4()
         })
+
+        console.log(state)
     }
 
     return (
